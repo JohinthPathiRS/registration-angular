@@ -16,7 +16,7 @@ export class EmployeeTableComponent implements OnInit {
   }
 
   fetchEmployees() {
-    this.http.get('http://localhost:3000/getEmployees')
+    this.http.get('http://localhost:5000/getEmployees')
       .subscribe((response: any) => {
         this.employees = response;
       }, (error) => {
@@ -25,7 +25,7 @@ export class EmployeeTableComponent implements OnInit {
   }
   deleteEmployee(employeeId: number) {
 
-    this.http.delete(`http://localhost:3000/deleteEmployee/${employeeId}`).subscribe(() => {
+    this.http.delete(`http://localhost:5000/deleteEmployee/${employeeId}`).subscribe(() => {
    
       this.fetchEmployees();
     });

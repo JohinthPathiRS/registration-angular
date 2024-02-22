@@ -30,7 +30,7 @@ export class EmployeeFormComponent {
     if (this.formData.valid) {
       const formDataWithFormattedDate = { ...this.formData.value };
 
-      this.http.post('http://localhost:3000/submitForm', formDataWithFormattedDate)
+      this.http.post('http://localhost:5000/submitForm', formDataWithFormattedDate)
         .subscribe((response: any) => {
           alert(response.message);
           this.formData.reset();
