@@ -1,0 +1,34 @@
+.remain{
+    padding: 25px;
+    background-color: rgb(213, 216, 219);
+    width: 50vh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+label{
+    margin: 10px;
+}
+input{
+    margin: 10px;
+}
+button{
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(48, 48, 188);
+    color: white;
+    margin-left: 30vh;
+}
+.name{
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.val{
+    color: rgb(146, 28, 28);
+}
+input{
+    border-radius: 5px;
+}

@@ -1,38 +1,63 @@
 
-<form [formGroup]="formData" (ngSubmit)="submitForm()">
+<body>
+
+<div *ngIf="!formSubmitted">
+  <form [formGroup]="formData" (ngSubmit)="submitForm()">
     <h3>EMPLOYEE REGISTRATION FORM</h3>
-    <label for="employeeName">Employee Name:</label>
-    <input type="text" id="employeeName" formControlName="employee_name" />
-    <div *ngIf="formData.get('employee_name')!.hasError('required')">Employee Name is required.</div>
-    <div *ngIf="formData.get('employee_name')!.hasError('maxlength')">Employee Name cannot exceed 30 characters.</div>
-  
-    <label for="employeeId">Employee ID:</label>
-    <input type="text" id="employeeId" formControlName="employee_id">
-    <div *ngIf="formData.get('employee_id')!.hasError('required')">Employee ID is required.</div>
     
-    <label for="department">Department:</label>
-    <select id="department" formControlName="department">
-      <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-    </select>
-  
-    <label for="dob">Date of Birth:</label>
-    <input type="date" id="dob" formControlName="dob">
-    <div *ngIf="formData.get('dob')!.hasError('required')">Date of Birth is required.</div>
-  
-    <label>Gender:</label>
-    <label><input type="radio" formControlName="gender" value="male"> Male</label>
-    <label><input type="radio" formControlName="gender" value="female"> Female</label>
-    <div *ngIf="formData.get('gender')!.hasError('required')">Gender is required.</div>
-  
-    <label for="designation">Designation:</label>
-    <input type="text" id="designation" formControlName="designation">
-    <div *ngIf="formData.get('designation')!.hasError('required')">Designation is required.</div>
-  
-    <label for="salary">Salary:</label>
-    <input type="text" id="salary" formControlName="salary">
-    <div *ngIf="formData.get('salary')!.hasError('required')">Salary is required.</div>
-    <div *ngIf="formData.get('salary')!.hasError('maxlength')">Salary cannot exceed 8 digits.</div>
-  
-    <button type="submit">Submit</button>
+    <div [hidden]="showRemainingFields">
+      <!-- First half of the form -->
+      <label for="employeeName">Employee Name:</label>
+      <input type="text" id="employeeName" formControlName="employee_name" />
+      <div *ngIf="formData.get('employee_name')!.hasError('required')">Employee Name is required.</div>
+      <div *ngIf="formData.get('employee_name')!.hasError('maxlength')">Employee Name cannot exceed 30 characters.</div>
+      
+      <label for="employeeId">Employee ID:</label>
+      <input type="text" id="employeeId" formControlName="employee_id">
+      <div *ngIf="formData.get('employee_id')!.hasError('required')">Employee ID is required.</div>
+      
+      <label for="department">Department:</label>
+      <select id="department" formControlName="department">
+        <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+      </select>
+      
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" formControlName="dob">
+      <div *ngIf="formData.get('dob')!.hasError('required')">Date of Birth is required.</div>
+      <div *ngIf="formData.get('dob')!.hasError('futureDate')">Invalid Date. Please select a past date.</div>
+      <div *ngIf="formData.get('dob')!.hasError('minAge')">You must be at least 18 years old to register.</div>
+      
+    </div>
+    
+    <button (click)="toggleVisibility()" type="button">{{ showRemainingFields ? 'Previous' : 'Next' }}</button>
+
+    <div *ngIf="showRemainingFields">
+    
+      <label>Gender:</label>
+      <label><input type="radio" formControlName="gender" value="male"> Male</label>
+      <label><input type="radio" formControlName="gender" value="female"> Female</label>
+      <div *ngIf="formData.get('gender')!.hasError('required')">Gender is required.</div>
+      
+      <label for="designation">Designation:</label>
+      <input type="text" id="designation" formControlName="designation">
+      <div *ngIf="formData.get('designation')!.hasError('required')">Designation is required.</div>
+      
+      <label for="salary">Salary:</label>
+      <input type="text" id="salary" formControlName="salary">
+      <div *ngIf="formData.get('salary')!.hasError('required')">Salary is required.</div>
+      <div *ngIf="formData.get('salary')!.hasError('maxlength')">Salary cannot exceed 8 digits.</div>
+      <button type="submit">Submit</button>
+    </div>
+    
+    
+   
   </form>
-  
+</div>
+
+<div *ngIf="formSubmitted">
+
+  <h3>Form Submitted Successfully!</h3>
+</div>
+
+</body>
+

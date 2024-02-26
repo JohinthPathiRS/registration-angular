@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { EmployeeTableComponent } from './employee-table/employee-table.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeFormComponent,
-    EmployeeTableComponent
+    EmployeeTableComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -91,6 +91,36 @@ app.get('/getEmployees', (req, res) => {
   });
 
 
+
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
+  connection.query(sql, [username, password], (error, results) => {
+    if (error) {
+      console.error('Error executing SQL query:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    } else if (results.length > 0) {
+      res.status(200).json({ success: true, message: 'Login successful' });
+    } else {
+      res.status(401).json({ success: false, message: 'Invalid username or password' });
+    }
+  });
+});
+
+
+
+app.get('/protected', authenticateUser, (req, res) => {
+  res.status(200).json({ message: 'Protected route accessed' });
+});
+
+function authenticateUser(req, res, next) {
+  
+  next();
+}
+
+
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

@@ -17,7 +17,8 @@
           <td>{{ employee.employee_id }}</td>
           <td>{{ employee.employee_name }}</td>
           <td>{{ employee.department }}</td>
-          <td>{{ employee.dob }}</td>
+          <td>{{ employee.dob | date:'dd/MM/yyyy' }}</td>
+
           <td>{{ employee.gender }}</td>
           <td>{{ employee.designation }}</td>
           <td>{{ employee.salary }}</td>

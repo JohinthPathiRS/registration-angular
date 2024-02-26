@@ -1,4 +1,4 @@
-/* employee-form.component.css */
+
 
 form {
     max-width: 400px;
@@ -7,14 +7,22 @@ form {
   
   label {
     display: block;
-    margin-top: 10px;
+    color: black;
+    
+    
   }
-  
+  .rad{
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  p{
+    margin-bottom: 10px;
+  }
   input, select, button {
     width: 100%;
-    padding: 8px;
+    padding: 13px;
     margin-top: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     box-sizing: border-box;
     border-radius: 5px;
   }
@@ -38,4 +46,10 @@ form {
     padding: 30px;
     background-color: rgb(62, 113, 190);
     border-radius: 5px;
+  }
+  div{
+    color:rgb(168, 29, 29);
+  }
+  h3{
+    color: black;
   }

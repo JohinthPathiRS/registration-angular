@@ -9,37 +9,70 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmployeeFormComponent {
   formData: FormGroup;
-
- 
   departments: string[] = ['IT', 'Finance', 'Marketing'];
+  showRemainingFields: boolean = false;
+  formSubmitted: boolean = false;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.formData = this.fb.group({
       employee_name: ['', [Validators.required, Validators.maxLength(30)]],
       employee_id: ['', Validators.required],
       department: ['', Validators.required],
-      dob: ['', Validators.required],
+      dob: ['', [Validators.required, this.dateOfBirthValidator]],
       gender: ['', Validators.required],
       designation: ['', Validators.required],
       salary: ['', [Validators.required, Validators.maxLength(8)]]
     });
   }
 
-  submitForm() {
-    console.log(this.formData.value);
-    if (this.formData.valid) {
-      const formDataWithFormattedDate = { ...this.formData.value };
+  dateOfBirthValidator(control: any) {
+    const dob = new Date(control.value);
+    const currentDate = new Date();
+    const minAgeDate = new Date();
+    minAgeDate.setFullYear(minAgeDate.getFullYear() - 18);
 
-      this.http.post('http://localhost:5000/submitForm', formDataWithFormattedDate)
-        .subscribe((response: any) => {
-          alert(response.message);
-          this.formData.reset();
-        }, (error) => {
-          console.log(error);
-          alert('Error submitting form');
-        });
-    } else {
-      alert('Please fill out the form correctly.');
+    if (dob > currentDate) {
+      return { 'futureDate': true };
+    }
+    if (dob > minAgeDate) {
+      return { 'minAge': true };
+    }
+    return null;
+  }
+
+  toggleVisibility() {
+    this.showRemainingFields = !this.showRemainingFields;
+  }
+
+  submitForm() {
+    if (this.formData.valid) {
+      this.formSubmitted = true;
+
+      
+      
+
+      const formDataToSend = {
+        employee_name: this.formData.value.employee_name,
+        employee_id: this.formData.value.employee_id,
+        department: this.formData.value.department,
+        dob: this.formData.value.dob,
+        gender: this.formData.value.gender,
+        designation: this.formData.value.designation,
+        salary: this.formData.value.salary
+      };
+
+      this.http.post('http://localhost:5000/submitForm', formDataToSend)
+        .subscribe(
+          response => {
+            console.log(response);
+          },
+          error => {
+            console.error(error);
+          }
+        );
+
+      this.formData.reset();
+      this.showRemainingFields = false;
     }
   }
 }
