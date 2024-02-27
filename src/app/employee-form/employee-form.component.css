@@ -43,6 +43,7 @@ form {
     background-color: #45a049;
   }
   form{
+    
     padding: 30px;
     background-color: rgb(62, 113, 190);
     border-radius: 5px;
@@ -52,4 +53,21 @@ form {
   }
   h3{
     color: black;
+  }
+  .output{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+  body{
+    background-image: url("/assets/bgm.jpeg");
+    height: 100vh;
+  }
+  .val{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    
   }

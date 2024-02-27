@@ -1,32 +1,45 @@
-/* employee-table.component.css */
+/* Add these styles to your component's CSS file */
+
+div {
+  margin: 20px;
+}
+
+h3 {
+  color: #3498db;
+}
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  tr:hover {
-    background-color: #f5f5f5;
-  }
-  button{
-    border-radius: 5px;
-    color: white;
-    background-color: rgb(69, 69, 179)
-    ;
-  }
-  button:hover{
-    color: rgb(69, 69, 179);
-    background-color: white;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #3498db;
+  color: #fff;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+button {
+  padding: 8px 12px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c0392b;
+}

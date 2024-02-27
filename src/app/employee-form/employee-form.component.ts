@@ -21,9 +21,21 @@ export class EmployeeFormComponent {
       dob: ['', [Validators.required, this.dateOfBirthValidator]],
       gender: ['', Validators.required],
       designation: ['', Validators.required],
-      salary: ['', [Validators.required, Validators.maxLength(8)]]
+      salary: ['', [Validators.required, Validators.maxLength(8), this.salaryValidator]]
+
     });
   }
+  salaryValidator(control: any) {
+    const salary = control.value;
+  
+ 
+    if (isNaN(salary) || salary < 0) {
+      return { 'negativeSalary': true };
+    }
+  
+    return null;
+  }
+  
 
   dateOfBirthValidator(control: any) {
     const dob = new Date(control.value);

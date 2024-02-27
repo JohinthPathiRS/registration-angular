@@ -22,4 +22,7 @@ button {
     display: block;
     margin-top: 20px;
   }
+  div{
+    background-image: url("/assets/bgm.jpeg");
+  }
   

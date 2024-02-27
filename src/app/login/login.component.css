@@ -20,11 +20,13 @@ button{
     margin-left: 30vh;
 }
 .name{
-    margin-top: 20vh;
+    
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-image: url("/assets/bg.avif");
+    height: 100vh;
 }
 .val{
     color: rgb(146, 28, 28);
